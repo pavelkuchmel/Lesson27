@@ -50,7 +50,25 @@ public class BinaryHeap<T extends Comparable<T>> {
             num = parent;
         }
     }
-    private void siftDown(int num){
+    private void siftDown(int i) {
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        int largest = i;
+        if (left < elements.size() &&
+                elements.get(left).compareTo(elements.get(i)) > 0) {
+            largest = left;
+        }
+
+        if (right < elements.size() &&
+                elements.get(right).compareTo(elements.get(largest)) > 0) {
+            largest = right;
+        }
+        if (largest != i) {
+            Collections.swap(elements,i, largest);
+            siftDown(largest);
+        }
+    }
+    /*private void siftDown(int num){
         int left = 2 * num + 1;
         int right = 2 * num + 2;
 
@@ -65,6 +83,6 @@ public class BinaryHeap<T extends Comparable<T>> {
             Collections.swap(elements, num, largest);
             siftDown(largest);
         }
-    }
+    }*/
     private ArrayList<T> elements;
 }
